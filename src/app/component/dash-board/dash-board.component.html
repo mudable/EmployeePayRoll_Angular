@@ -26,19 +26,23 @@
         Employee Details
         <div class="emp-count">10</div>
       </div>
-      <a class="add-button"  routerLink="/login">
-        <img src="./assets/icons/plus_symbol.svg" alt="">Add User
+      <a class="add-button"  routerLink="/login" onclick="onSubmit()">
+        <!-- <img src="./assets/icons/plus_symbol.svg" alt=""> -->
+        Add User
       </a>
       </div>
       <div class="table-main">
         <table id="display" class="table">
-            <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Department</th>
-                <th>Salary</th>
-                <th>Start Date</th>
-                <th>Actions</th>
+            <tr *ngFor="let employee of employeesData">
+                <th>{{employee.Name}}</th>
+                <th>{{employee.Gender}}</th>
+                <th>{{employee.Department}}</th>
+                <th>{{employee.Salary}}</th>
+                <th>{{employee.StartDate}}</th>
+                <th>{{employee.EmailId}}</th>
+                <th>{{employee.Password]]</th>
+               <th>Actions</th>
+                
             </tr>
             <tr>
                 <td>Shilpa</td>

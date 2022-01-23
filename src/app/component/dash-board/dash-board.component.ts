@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DashboardService } from 'src/app/Service/dashboard.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -7,11 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./dash-board.component.scss']
 })
 export class DashBoardComponent implements OnInit {
-  
 
-  constructor(private router:Router) { }
+  employeesData: any;
+  constructor(private router: Router, private dashbordService: DashboardService) { }
 
   ngOnInit(): void {
+    var token = this.dashbordService.dashBoard(this.employeesData).subscribe(
+
+      (response: any) => {
+        console.log(response)
+      }
+    )
+
   }
- 
 }
+

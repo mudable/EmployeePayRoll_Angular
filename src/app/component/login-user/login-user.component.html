@@ -1,0 +1,29 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <title>Login Form</title>    
+    <link rel="stylesheet" type="text/css" href="./login-user.component.scss">    
+</head>    
+<body>    
+    <h2>Login Page</h2><br>    
+    <div class="login">    
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >    
+        <label><b>E-mail ID    
+        </b>    
+        </label>    
+        <input type="text" name="emailId" id="Uname" placeholder="emailId" formControlName="emailId"[(ngModel)]="data.emailId">    
+        <br><br>    
+        <label><b>Password     
+        </b>    
+        </label>    
+        <input type="password" name="Pass" id="Pass" placeholder="password" formControlName="password" [(ngModel)]="data.password">    
+        <br><br>    
+        <!-- <input type="button" name="log" id="log" value="Log In Here">        -->
+        <button type="submit"> login
+</button>
+
+        <br><br>    
+        </form>     
+</div>    
+</body>    
+</html>

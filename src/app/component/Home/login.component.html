@@ -1,0 +1,111 @@
+<app-header></app-header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Employee Input Form</title>
+</head>
+<body>
+    <div class="form-content">
+        <form userForm="ngForm" class="form" action="#"    (ngSubmit)="onSubmit()">
+<div class="form-head">Employee Payroll Form</div>
+            <div class="row-content">
+    <label for="name" class="label text">Name</label>
+    <input type="text" name="name" id="name" class="input required" placeholder="Your Name ..." [(ngModel)]="empdata.name"  [ngModelOptions]="{standalone: true}"
+        autocomplete="off" required ><br> <br>
+        <!-- <br><span class="validate" *ngIf="name && name.invalid && name.touched "> The given name is invalid It should start with capital letter.</span> -->
+     <!-- <error-output class="text-error" for="text"></error-output>  -->
+ </div>
+
+ <div class="row-content">
+    <label for="emailId" class="label text">emailId</label>
+    <input type="text" name="emailId" id="emailId" class="input required" placeholder="Your emailId ..."[(ngModel)]="empdata.emailId"  [ngModelOptions]="{standalone: true}">
+ </div>
+
+ <div class="row-content">
+    <label for="password" class="label text">password</label>
+    <input type="text" name="password" id="password" class="input required" placeholder="Your password..." [(ngModel)]="empdata.password"  [ngModelOptions]="{standalone: true}">
+ </div>
+<div class="row-content">
+        <label class="label text" for="profile">Profile image</label>
+        <div class="profile-radio-content">
+            <label>
+                <input type="radio" id="profile2" name="profile" [(ngModel)]="empdata.profile"  [ngModelOptions]="{standalone: true}"
+                    value="./assets/profile-images/Ellipse -1.png"  >
+                <img class="profile" id="image1" src="./assets/profile-images/Ellipse -1.png">
+            </label>
+            <label>
+                <input type="radio" id="profile2" name="profile" [(ngModel)]="empdata.profile"
+                    value="./assets/profile-images/Ellipse -2.png" >
+                <img class="profile" id="image2" src="./assets/profile-images/Ellipse -2.png">
+            </label>
+            <label>
+                <input type="radio" id="profile3" name="profile" [(ngModel)]="empdata.profile"
+                    value="./assets/profile-images/Ellipse -9.png" > 
+                <img class="profile" id="image3" src="./assets/profile-images/Ellipse -9.png">
+            </label>
+            <label>
+                <input type="radio" id="profile4" name="profile" [(ngModel)]="empdata.profile"
+                    value="../assets/profile-images/Ellipse -4.png" >
+                <img class="profile" id="image4" src="../assets/profile-images/Ellipse -4.png">
+            </label>
+        </div> 
+     </div>
+    <div class="row-content" >
+        <label class="label text" for="gender">Gender</label>
+        <div >
+            
+            <input type="radio" id="male" name="gender" value="Male"[(ngModel)]="empdata.gender"  [ngModelOptions]="{standalone: true}">
+            <label class="text" for="male">Male</label>
+            
+            <input type="radio" id="female" name="gender" value="Female" [(ngModel)]="empdata.gender"  [ngModelOptions]="{standalone: true}">
+            <label class="text" for="female">Female</label>
+        </div>
+        <!-- <span class="gender" *ngIf="!loginForm.controls['gender'].valid ">"This field is mandatory." </span> -->
+    </div>
+    <div class="row-content">
+        <label class="label text" for="department">Department</label>
+        
+        <div *ngFor="let department of departmentList">
+            <mat-checkbox #checkbox class="checkbox" type="checkbox" color="primary" [value]="department.value" [checked]='department.checked' [(ngModel)]="empdata.department"  [ngModelOptions]="{standalone: true}">
+                <label class="text">{{department.name}}</label>
+            </mat-checkbox>
+        </div>
+
+    </div>
+    <div class="row-content">
+        <label class="label text" for="salary">Choose Your Salary: </label>
+        <input class="input required" type="range" name="salary" id="salary" min="300000" max="500000"
+            step="100" value="400000"[(ngModel)]="empdata.salary"  [ngModelOptions]="{standalone: true}">
+        <output class="salary-output text" for="salary">400000</output>
+    </div>
+    <div class="row-content">
+        <label class="label text" for="startDate" name="date">Start Date</label>
+       
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="empdata.date"  [ngModelOptions]="{standalone: true}">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="notes">Notes</label>
+                <textarea id="notes" class="input required" name="notes" placeholder="" style="height:100px"  [(ngModel)]="empdata.notes"  [ngModelOptions]="{standalone: true}"></textarea>
+                <!-- <span class="notes" *ngIf="notes && notes.invalid "> The note field is required,And it should contain minimum of 5 character.</span> -->
+            </div>
+
+            <div class="buttonParent">
+                <a href="./home.html" class="resetButton button cancelButton" routerLink="/dashboard" >Cancel</a>
+                <div class="submit-reset">
+                    <button type="button" class="button submitButton" id="submitButton" routerLink="/dashboard" >Submit</button>
+                    <button type="button" class="resetButton button" >Reset</button>
+                </div>
+            </div>
+         </form>
+    </div>
+</body>
+</html>
+<!-- [disabled]="!loginForm.valid" -->
