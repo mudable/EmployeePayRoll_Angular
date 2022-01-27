@@ -14,6 +14,8 @@ import { LoginUserComponent } from './component/login-user/login-user.component'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+
+import { UpdateEmployeeDataComponent } from './component/update-employee-data/update-employee-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     DashBoardComponent,
     HeaderComponent,
     LoginUserComponent,
+   UpdateEmployeeDataComponent,
     
   ],
   imports: [
@@ -33,7 +36,6 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     BrowserAnimationsModule,MatCheckboxModule,
     HttpClientModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="form-content">
-        <form class="form" action="#" [formGroup]="loginForm">
+        <form class="form" action="#" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 <div class="form-head">Employee Payroll Form</div>
             <div class="row-content">
     <label for="name" class="label text">Name</label>
@@ -65,7 +65,7 @@
         </div>
         <span class="gender" *ngIf="!loginForm.controls['gender'].valid ">"This field is mandatory." </span>
     </div>
-    <div class="row-content">
+    <!-- <div class="row-content">
         <label class="label text" for="department">Department</label>
         
         <div *ngFor="let department of departmentList;let i=index">
@@ -74,23 +74,14 @@
             </mat-checkbox>
         </div>
 
-    </div>
+    </div> -->
     <div class="row-content">
         <label class="label text" for="salary">Choose Your Salary: </label>
         <input class="input required" type="range" name="salary" id="salary" min="300000" max="500000" formControlName="salary"
             step="100" value="400000">
         <output class="salary-output text" for="salary">400000</output>
     </div>
-    <div class="row-content">
-        <label class="label text" for="startDate" name="date">Start Date</label>
-       
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="date">  
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
+   
             <div class="row-content">
                 <label class="label text" for="notes">Notes</label>
                 <textarea id="notes" class="input required" name="notes" placeholder="" style="height:100px" formControlName="note"></textarea>
@@ -100,7 +91,7 @@
             <div class="buttonParent">
                 <a href="./home.html" class="resetButton button cancelButton" routerLink="/dashboard" >Cancel</a>
                 <div class="submit-reset">
-                    <button type="button" class="button submitButton" id="submitButton" routerLink="/dashboard" (click)="addUser()">Submit</button>
+                    <button type="button" class="button submitButton" id="submitButton" routerLink="/dashboard">Update</button>
                     <button type="button" class="resetButton button" >Reset</button>
                 </div>
             </div>

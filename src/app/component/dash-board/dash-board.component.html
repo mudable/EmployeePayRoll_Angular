@@ -33,29 +33,40 @@
       </div>
       <div class="table-main">
         <table id="display" class="table">
-            <tr *ngFor="let employee of employeesData">
-                <th>{{employee.Name}}</th>
-                <th>{{employee.Gender}}</th>
-                <th>{{employee.Department}}</th>
-                <th>{{employee.Salary}}</th>
-                <th>{{employee.StartDate}}</th>
-                <th>{{employee.EmailId}}</th>
-                <th>{{employee.Password]]</th>
-               <th>Actions</th>
-                
-            </tr>
             <tr>
-                <td>Shilpa</td>
-                <td>Mudable</td>
-                <td>
-                    <div class="dept-label">HR</div>
-                    <div class="dept-label">Engineer</div>
-                </td>
-                <td>400000</td>
-                <td>12 Feb 2020</td>
-                <td>
-                    <img id="1" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-                    <img id="1" onclick="update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg">
+             <th>EmployeeId</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>profilePic</th>
+                <!-- <th>Department</th> -->
+                <th>Salary</th>
+                <!-- <th>StartDate</th> -->
+                <th>Note</th>
+                <th>EmailId</th>
+                <th>password</th>
+                <th>Actions</th>
+            </tr>
+           <tr *ngFor="let employee of allEmployeeData">
+                    <td>{{employee.employeeId}}</td>
+                    <td>{{employee.name }}</td>
+                    <td>{{employee.gender }}</td>
+                    <td>
+                      <img class="profile" src={{employee.profilePic}} alt="">
+                  </td>
+                    <!-- <td> -->
+                        <!-- <div class="dept-label">
+                            {{employee.departments}}
+                        </div> -->
+                    <!-- </td> -->
+                    <td> {{employee.salary }}</td>
+                    <!-- <td>{{employee.startDate | date : 'dd MMMM yyyy'}}</td> -->
+                    <td>{{employee.note}}</td>
+                    <td>{{employee.emailId}}</td>
+                      <td>{{employee.password}}</td>
+    
+                    <td>
+                <img id="1"(click)=" deleteRecord(employee.employeeId)" onclick="remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+                    <img id="1" alt="edit" src="../assets/icons/create-black-18dp.svg"  routerLink="/update/{{employee.employeeId}}1">
                 </td>
             </tr>
         </table>

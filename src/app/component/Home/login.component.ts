@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms'
+import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
+import { Empdto } from 'src/app/Service/empdto';
 import { EmployeeFormService } from 'src/app/Service/employee-form.service';
 
 
@@ -12,46 +13,57 @@ import { EmployeeFormService } from 'src/app/Service/employee-form.service';
 })
 
 export class LoginComponent implements OnInit {
-  
-empdata={
-  emailId:'',
-  password:'',
-  name:'',
-  notes:'',
-  profile:'',
-  gender:'',
-  department:'',
-  salary:'',
-  date:'',
-}
-
-  employee: any = {};
+  employeeobject : Empdto=new Empdto
+    employee: any = {};
   minDate: Date;
   maxDate: Date;
+  loginForm!:FormGroup
+  allEmployeeData: any;
 
-  constructor(private empservice:EmployeeFormService,private router:Router) { 
+  constructor(private empservice:EmployeeFormService,private router:Router,private formBuilder:FormBuilder) { 
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 20, 0, 1);
     this.maxDate = new Date(currentYear + 1, 11, 31); 
   }
-
-
-  ngOnInit(): void {
+ ngOnInit(): void {
+    this.loginForm =this.formBuilder.group({
+      name: [''],
+      note: [''],
+      profilePic:[''] ,
+    gender:[''],
+    department:[''],
+    salary: [''],
+    date: [''],
+    password:[''],
+    emailId:['']
+    
+    })
   }
 
-  // loginForm = new FormGroup({
-  //   name: new FormControl('', [Validators.required, Validators.pattern('^[A-Z]{1}[a-zA-Z\\s]{2,}$')]),
-  //   notes: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  //   profile: new FormControl('', [Validators.required]),
-  //   gender: new FormControl('', [Validators.required]),
-  //   department: new FormControl('', [Validators.required]),
-  //   salary: new FormControl('', [Validators.required]),
-  //   date: new FormControl('', [Validators.required]),
-  //   password:new FormControl('', [Validators.required]),
-  //   emailId:new FormControl('', [Validators.required]),
+  //To store employeeData in Data base.
+  addUser(){
+    this.employeeobject.name=this.loginForm.value.name;
+    this.employeeobject.note=this.loginForm.value.note;
+    this.employeeobject.profilePic=this.loginForm.value.profilePic;
+    this.employeeobject.gender=this.loginForm.value.gender;
+    this.employeeobject.department=this.loginForm.value.department;
+    this.employeeobject.salary=this.loginForm.value.salary;
+    this.employeeobject.date=this.loginForm.value.date;
+    this.employeeobject.password=this.loginForm.value.password;
+    this.employeeobject.emailId=this.loginForm.value.emailId;
 
-  // })
+    this.empservice.addUser(this.employeeobject).subscribe(res=>{
+      console.log(res);
+      alert("employee data added successfully.");
+      this.loginForm.reset();
+    },
+    err=>{
+      alert("some thing went wrong.")
+    })
+  }
 
+
+ 
   
   // onsubmit() {
   //   var obj = JSON.stringify(this.loginForm.value);
@@ -67,29 +79,7 @@ empdata={
   //     array.push(obj);
   //     localStorage.setItem('empdata',JSON.stringify(array))
   //   }
-  onSubmit(){
-    if((this.empdata.emailId!='' && this.empdata.password!='') && (this.empdata.emailId!=null && this.empdata.password!= null)){
-      console.log("We have to submit the form to server");
-      console.log(this.empdata)
-      // to generate token 
-      var token= this.empservice.addUser(this.empdata).subscribe(
-      
-        (response:any)=>{
-          console.log(response)
-          this.empservice.createUser(response.empdata)
-          // window.location.href="/dashboard"
-          this.router.navigate(["/dashboard"])
-        },
-        errors=>{
-        console.log(errors);
-
-        }
-      )
-      //localStorage.setItem("token",JSON.stringify(token))
-     
-      }
-    }
-  
+  // 
 
   // get name() {
   //   return this.loginForm.get('name');
